@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
  * Fetch data from a URL
  * 
  * @param {String} url - URL for getting data
- * @returns {Object} { data, isPending, setIsPending, error }
+ * @returns {Object} { data, setData, isPending, error }
  */
 const useFetchData = (url) => {
     const [data, setData] = useState(null);

@@ -20,6 +20,7 @@
     ],
     "rules": {
         "semi": "error",
-        "indent": ["warn", 4]
+        "indent": ["warn", 4],
+        "quotes": ["warn", "single"]
     }
 }
