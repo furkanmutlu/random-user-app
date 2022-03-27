@@ -10,7 +10,7 @@ import { Pagination } from 'react-bootstrap';
 import Error from '../components/Error';
 
 /* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
-const List = ({ pageNumber, setPageNumber, error, isPending, tableData }) => {
+const List = ({ allUsers, setAllUsers, pageNumber, setPageNumber, error, isPending, tableData }) => {
     const history = useHistory();
 
     const handlePagination = (num) => {
@@ -18,7 +18,13 @@ const List = ({ pageNumber, setPageNumber, error, isPending, tableData }) => {
         setPageNumber(newPageNumber);
     };
 
-    const handleClick = (uid) => {
+    const handleClick = (uid, idx) => {
+        const copyAllUsers = [...allUsers];
+        copyAllUsers[pageNumber].results[idx].viewed = true;
+        console.log(copyAllUsers);
+        
+        setAllUsers(copyAllUsers);
+
         history.push(`/details/${pageNumber}/${uid}`);
     };
 
@@ -32,7 +38,7 @@ const List = ({ pageNumber, setPageNumber, error, isPending, tableData }) => {
                         <Row className="justify-content-md-center">
                             <Col xs={12} md={11}>
                                 {!isPending && tableData &&
-                                    <Table striped bordered hover>
+                                    <Table bordered hover>
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -49,8 +55,12 @@ const List = ({ pageNumber, setPageNumber, error, isPending, tableData }) => {
                                                 const email = user?.email || '';
 
                                                 return (
-                                                    <tr key={idx} onClick={() => handleClick(user.id.value)}>
-                                                        <td>{((tableData.info.page - 1) * 10) + (idx + 1)}</td>
+                                                    <tr 
+                                                        key={idx} 
+                                                        onClick={() => handleClick(user.id.value, idx)} 
+                                                        className={ user.viewed ? 'bg-dark text-white' : null }
+                                                    >
+                                                        <td>{((tableData.info.page - 1) * 20) + (idx + 1)}</td>
                                                         <td>{`${firstName} ${lastName}`}</td>
                                                         <td>{userName}</td>
                                                         <td>{email}</td>

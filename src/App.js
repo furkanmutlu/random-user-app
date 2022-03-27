@@ -45,7 +45,7 @@ function App() {
             return;
         }
 
-        setUrl(`https://randomuser.me/api/?nat=us&page=${pageNumber}&results=10&seed=randomUsers`);
+        setUrl(`https://randomuser.me/api/?nat=us&page=${pageNumber}&results=20&seed=randomUsers`);
     }, [pageNumber]);
 
     return (
@@ -59,8 +59,9 @@ function App() {
                 <div className="content">
                     <Switch>
                         <Route exact path='/'>
-                            <List 
+                            <List
                                 allUsers={allUsers}
+                                setAllUsers={setAllUsers}
                                 pageNumber={pageNumber}
                                 setPageNumber={setPageNumber}
                                 error={error}
