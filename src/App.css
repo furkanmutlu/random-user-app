@@ -5,3 +5,8 @@ tbody tr:hover {
 .user-list-placeholder {
     min-height: 455px;
 }
+
+.table-hover>tbody>tr.bg-dark:hover>* {
+    opacity: 0.7;
+    color: white!important;
+}

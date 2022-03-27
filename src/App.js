@@ -23,7 +23,7 @@ import './App.css';
 function App() {
     const [allUsers, setAllUsers] = useState([]);
     const [pageNumber, setPageNumber] = useState(1);
-    const [url, setUrl] = useState(`https://randomuser.me/api/?nat=us&page=${pageNumber}&results=10&seed=randomUsers`);
+    const [url, setUrl] = useState(`https://randomuser.me/api/?nat=us&page=${pageNumber}&results=20&seed=randomUsers`);
     const { data: tableData, setData: setTableData, isPending, error} = useFetchData(url);
 
     useEffect(() => {
