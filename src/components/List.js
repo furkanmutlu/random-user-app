@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router-dom';
 
+// Bootstrap Components
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -7,7 +8,8 @@ import Table from 'react-bootstrap/Table';
 import Placeholder from 'react-bootstrap/Placeholder';
 import { Pagination } from 'react-bootstrap';
 
-import Error from '../components/Error';
+// Custom Components
+import Error from './Error';
 
 /* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
 const List = ({ allUsers, setAllUsers, pageNumber, setPageNumber, error, isPending, tableData }) => {
@@ -21,10 +23,8 @@ const List = ({ allUsers, setAllUsers, pageNumber, setPageNumber, error, isPendi
     const handleClick = (uid, idx) => {
         const copyAllUsers = [...allUsers];
         copyAllUsers[pageNumber].results[idx].viewed = true;
-        console.log(copyAllUsers);
         
         setAllUsers(copyAllUsers);
-
         history.push(`/details/${pageNumber}/${uid}`);
     };
 

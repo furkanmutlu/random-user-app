@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
+// Bootstrap Components
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -8,7 +9,8 @@ import Table from 'react-bootstrap/Table';
 import Image from 'react-bootstrap/Image';
 import Spinner from 'react-bootstrap/Spinner';
 
-import Error from '../components/Error';
+// Custom Components
+import Error from './Error';
 
 /* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
 const UserDetails = ({ allUsers, isPending, error }) => {

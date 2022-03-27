@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -6,12 +6,15 @@ import {
     Link
 } from 'react-router-dom';
 
-import useFetchData from './utils/useFetchData';
+// Hooks
+import useFetchData from './hooks/useFetchData';
+import useAllUsers from './hooks/useAllUsers';
 
+// Bootstrap Components
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 
-
+// Custom Components
 import List from './components/List';
 import UserDetails from './components/UserDetails';
 import NotFound from './components/NotFound';
@@ -21,32 +24,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
-    const [allUsers, setAllUsers] = useState([]);
-    const [pageNumber, setPageNumber] = useState(1);
-    const [url, setUrl] = useState(`https://randomuser.me/api/?nat=us&page=${pageNumber}&results=20&seed=randomUsers`);
+    const [url, setUrl] = useState('https://randomuser.me/api/?nat=us&page=1&results=20&seed=randomUsers');
     const { data: tableData, setData: setTableData, isPending, error} = useFetchData(url);
-
-    useEffect(() => {
-        setAllUsers((prevUsers) => {
-            const newUsers = [...prevUsers];
-            newUsers[pageNumber] = tableData;
-
-            return newUsers;
-        });
-
-        if (tableData && pageNumber !== tableData.info.page) {
-            setPageNumber(tableData.info.page);
-        }
-    }, [tableData]);
-
-    useEffect(() => {
-        if (allUsers[pageNumber]) {
-            setTableData(allUsers[pageNumber]);
-            return;
-        }
-
-        setUrl(`https://randomuser.me/api/?nat=us&page=${pageNumber}&results=20&seed=randomUsers`);
-    }, [pageNumber]);
+    const { allUsers, setAllUsers, pageNumber, setPageNumber } = useAllUsers(tableData, setTableData, setUrl);
 
     return (
         <div className="App">

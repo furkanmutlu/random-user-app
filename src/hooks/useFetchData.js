@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 /**
  * 
  * Fetch data from a URL
  * 
  * @param {String} url - URL for getting data
- * @returns {Object} { data, setData, isPending, error }
+ * @returns {Object} { data, setData, isPending, setIsPending, error }
  */
 const useFetchData = (url) => {
     const [data, setData] = useState(null);
@@ -28,7 +28,13 @@ const useFetchData = (url) => {
             });
     }, [url]);
 
-    return { data, setData, isPending, setIsPending, error };
+    return { 
+        data, 
+        setData, 
+        isPending, 
+        setIsPending, 
+        error 
+    };
 };
 
 export default useFetchData;
